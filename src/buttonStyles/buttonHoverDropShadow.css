@@ -1,0 +1,9 @@
+.btn-success:hover {
+  box-shadow: 0px 3px 10px #2a986496;
+}
+.btn-danger:hover {
+  box-shadow: 0px 3px 10px #dc354698;
+}
+.btn-primary:hover {
+  box-shadow: 0px 3px 10px #0d6dfd8e;
+}

@@ -1,0 +1,122 @@
+import React, { useEffect, useState } from "react";
+import { get } from "../../services/apiService";
+import PatientsTable from "./patientsTable";
+import CreateModal from "../modals/modalCreatePatient";
+import Input from "../inputForm/input";
+import ProgressCircle from "../materialUIComponents/progressCircle";
+import SnackBar from "../materialUIComponents/snackBar";
+import "../../buttonStyles/buttonHoverDropShadow.css";
+
+export default function Patients({ user }) {
+  const [loadingData, setLoadingData] = useState(true);
+  const [patients, setPatients] = useState([]);
+  const [show, setShow] = useState(false);
+  const [snackBar, setSnackBar] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
+  useEffect(() => {
+    document.title = "Patients";
+    getPatients();
+
+    return () => {
+      setPatients([]);
+    };
+  }, []);
+
+  const getPatients = async () => {
+    try {
+      const { data: users } = await get(
+        "/Patient/getAllForPagination?PageNumber=1&PageSize=10"
+      );
+      const patients = users.data.items;
+      setPatients(patients);
+      setLoadingData(false);
+    } catch (ex) {
+      console.log(`Errors: ${ex}`);
+    }
+  };
+
+  const handleDelete = (patient) => {
+    const deletePatient = patients.filter((allPatients) => {
+      return allPatients.id !== patient.id;
+    });
+    setPatients(deletePatient);
+    setDeleted(true);
+    setSnackBar(true);
+  };
+
+  const handleSearch = (e) => {
+    const search = e.currentTarget.value;
+    const filteredPatients = patients.filter((patient) => {
+      if (
+        patient.firstname.toLowerCase().includes(search.toLowerCase()) ||
+        patient.lastname.toLowerCase().includes(search.toLowerCase())
+      ) {
+        return patient;
+      }
+    });
+    setPatients(filteredPatients);
+  };
+
+  const handleSnackBarClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackBar(false);
+  };
+
+  if (loadingData) {
+    return ProgressCircle();
+  }
+
+  return (
+    <div className="container mt-4">
+      <h1 className="mb-4">Patients</h1>
+      {user && (
+        <button className="btn btn-success mb-3" onClick={() => setShow(true)}>
+          Add Patient
+        </button>
+      )}
+      <CreateModal
+        show={show}
+        onHide={() => setShow(false)}
+        patients={patients}
+        onShow={(bool) => {
+          setSnackBar(bool);
+          setDeleted(false);
+        }}
+      />
+      <div className="d-flex align-items-center mb-3">
+        <div className="flex-grow-1">
+          <Input
+            type="text"
+            placeholder="Search by firstname or lastname..."
+            onChange={handleSearch}
+          />
+        </div>
+        <div>
+          <button className="btn btn-primary mt-4">Search</button>
+        </div>
+      </div>
+      <PatientsTable
+        patients={patients}
+        handleDelete={handleDelete}
+        user={user}
+      />
+      {!user && (
+        <div className="text-center">
+          <p>
+            <strong>Login to create edit or delete a patient</strong>
+          </p>
+        </div>
+      )}
+      <SnackBar
+        open={snackBar}
+        message={deleted ? "PATIENT DELETED" : "PATIENT CREATED SUCCESFULLY"}
+        severity={deleted ? "error" : "success"}
+        autoHideDuration={4000}
+        handleSnackBarClose={handleSnackBarClose}
+      />
+    </div>
+  );
+}
