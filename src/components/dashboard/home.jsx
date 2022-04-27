@@ -5,7 +5,6 @@ import FormControlDropDown from "../materialUIComponents/formControlDropDown";
 import _ from "lodash";
 
 const Home = () => {
-  const _ = require("lodash");
   const allTreatments = PatientChartData.map((patient) => patient.treatments);
   const sumTreatments = _.sum(allTreatments);
 

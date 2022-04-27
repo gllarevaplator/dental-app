@@ -42,7 +42,7 @@ const FormControlDropDown = ({ sumTreatments, setPatientChartData }) => {
         id="demo-simple-select-autowidth"
         defaultValue=""
       >
-        <MenuItem onClick={handleAllYearsMenuItem} value={"All Years"}>
+        <MenuItem onClick={handleAllYearsMenuItem} value={"All Years"} selected>
           <em>All Years</em>
         </MenuItem>
         {PatientChartData.map((patient) => (
