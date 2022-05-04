@@ -13,3 +13,7 @@ export async function post(endpoint, createNew) {
 export async function put(endpoint, update) {
   return await axios.put(url + endpoint, update);
 }
+
+export async function remove(endpoint, id) {
+  return await axios.delete(url + endpoint, id);
+}
