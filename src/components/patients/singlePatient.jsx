@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { get } from "../../services/apiService";
 import UpdateModal from "../modals/modalUpdatePatientInfo";
 import "./singlePatient.css";
@@ -17,6 +17,7 @@ const Patient = ({ user }) => {
     createModal: false,
     editModal: false,
   });
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const patientId = pathname.substring(9);
 
@@ -55,7 +56,7 @@ const Patient = ({ user }) => {
         <button
           className="btn btn-primary mb-4"
           onClick={() => {
-            window.history.back();
+            navigate("/patients");
           }}
         >
           &#8592; Back

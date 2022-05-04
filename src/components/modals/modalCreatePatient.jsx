@@ -10,6 +10,7 @@ import * as Yup from "yup";
 export default function CreateModal(props) {
   const { patients, onHide, onShow } = props;
   const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePictureError, setProfilePictureError] = useState("");
 
   const handleImageUpload = (e) => {
     const image = e.currentTarget.files[0];
@@ -77,8 +78,12 @@ export default function CreateModal(props) {
           onHide();
           onShow(true);
           handleReset();
+          setProfilePictureError("");
         } catch (ex) {
-          console.log(`Errors: ${ex}`);
+          console.log(ex);
+          setProfilePictureError(
+            "Image is too large, try uploading a new one!"
+          );
         }
       },
     });
@@ -94,6 +99,7 @@ export default function CreateModal(props) {
         closeButton
         onClick={() => {
           handleReset();
+          setProfilePictureError("");
         }}
       >
         <Modal.Title>Add New Customer</Modal.Title>
@@ -195,6 +201,7 @@ export default function CreateModal(props) {
               name="profilePicture"
               onChange={handleImageUpload}
             />
+            <span className="text-danger">{profilePictureError}</span>
           </div>
         </form>
       </Modal.Body>
@@ -204,6 +211,7 @@ export default function CreateModal(props) {
           onClick={() => {
             onHide();
             handleReset();
+            setProfilePictureError("");
           }}
         >
           Cancel
