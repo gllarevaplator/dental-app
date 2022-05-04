@@ -10,6 +10,7 @@ import "../../buttonStyles/buttonHoverDropShadow.css";
 export default function Patients({ user }) {
   const [loadingData, setLoadingData] = useState(true);
   const [patients, setPatients] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [show, setShow] = useState(false);
   const [snackBar, setSnackBar] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -47,15 +48,7 @@ export default function Patients({ user }) {
 
   const handleSearch = (e) => {
     const search = e.currentTarget.value;
-    const filteredPatients = patients.filter((patient) => {
-      if (
-        patient.firstname.toLowerCase().includes(search.toLowerCase()) ||
-        patient.lastname.toLowerCase().includes(search.toLowerCase())
-      ) {
-        return patient;
-      }
-    });
-    setPatients(filteredPatients);
+    setSearchQuery(search);
   };
 
   const handleSnackBarClose = (reason) => {
@@ -102,6 +95,7 @@ export default function Patients({ user }) {
         patients={patients}
         handleDelete={handleDelete}
         user={user}
+        searchQuery={searchQuery}
       />
       {!user && (
         <div className="text-center">
