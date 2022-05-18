@@ -5,9 +5,7 @@ import viewIcon from "../../icons/viewIcon.svg";
 import deleteIcon from "../../icons/deleteIcon.svg";
 import "../../icons/iconHover.css";
 
-const PatientsTable = (props) => {
-  const { patients, handleDelete, user, searchQuery } = props;
-
+const PatientsTable = ({ patients, handleDelete, user, searchQuery }) => {
   return (
     <table className="table patient--table">
       <thead>
@@ -51,6 +49,7 @@ const PatientsTable = (props) => {
                   to={{
                     pathname: `/patient/${patient.id}`,
                   }}
+                  state={{ patientId: patient.id }}
                 >
                   <img src={viewIcon} className="bi" />
                 </Link>

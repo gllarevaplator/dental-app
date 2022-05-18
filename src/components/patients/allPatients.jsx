@@ -91,6 +91,7 @@ export default function Patients({ user }) {
           <button className="btn btn-primary mt-4">Search</button>
         </div>
       </div>
+
       <PatientsTable
         patients={patients}
         handleDelete={handleDelete}

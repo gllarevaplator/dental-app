@@ -17,9 +17,9 @@ const Patient = ({ user }) => {
     createModal: false,
     editModal: false,
   });
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const patientId = pathname.substring(9);
+  const patientId = state.patientId;
 
   useEffect(() => {
     document.title = "Patient";

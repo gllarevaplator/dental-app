@@ -2,7 +2,7 @@ export const PatientChartData = [
   {
     id: 1,
     year: 2017,
-    treatments: 1000,
+    treatments: 3500,
     color: "#D4F1F7",
   },
   {

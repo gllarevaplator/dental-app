@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { post } from "../../services/apiService";
 import SnackBar from "../materialUIComponents/snackBar";
 import Input from "../inputForm/input";
+import "./login.css";
 
 export default function LoginForm() {
   const [snackBar, setSnackBar] = useState(false);
@@ -51,9 +52,9 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="container mt-4">
+      <div className="container login-container mt-4">
         <h1 className="mb-4">Login</h1>
-        <form className="col-8">
+        <form className="col-6">
           <div className="mb-3">
             <Input
               label="Username"
