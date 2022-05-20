@@ -5,7 +5,6 @@ import NavBar from "./components/navigationBar/navbar";
 import Home from "./components/dashboard/home";
 import Patients from "./components/patients/allPatients";
 import LoginForm from "./components/loginForm/login";
-import Treatments from "./components/treatments/treatments";
 import Patient from "./components/patients/singlePatient";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,7 +27,6 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/patients" element={<Patients user={user} />} />
-        <Route path="/contact" element={<Treatments />} />
         <Route path="/patient/:id" element={<Patient user={user} />} />
         <Route path="/login" element={<LoginForm />} />
       </Routes>

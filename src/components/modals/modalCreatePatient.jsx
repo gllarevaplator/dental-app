@@ -73,8 +73,8 @@ export default function CreateModal(props) {
         Patient.profilePicture = profilePicture;
 
         try {
-          const { data: customer } = await post("/Patient/create", Patient);
-          patients.unshift(customer.data);
+          const { data: patient } = await post("/Patient/create", Patient);
+          patients.unshift(patient.data);
           onHide();
           onShow(true);
           handleReset();

@@ -28,9 +28,9 @@ export default function ProfilePictureModal(props) {
       setErrorMessage("Cannot proceed without a new picture!");
       return;
     } else {
-      patient.profilePicture = profilePicture;
       try {
-        // await put("/Patient/update", patient);
+        patient.profilePicture = profilePicture;
+        await put("/Patient/update", patient);
         onHide();
         setProfilePicture(null);
       } catch (ex) {

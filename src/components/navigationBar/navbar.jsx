@@ -46,11 +46,6 @@ export default function NavBar({ user }) {
                   Patients
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/contact" className="nav-link">
-                  Treatments
-                </Link>
-              </li>
             </ul>
           </div>
           <Box sx={{ flexGrow: 0 }}>
