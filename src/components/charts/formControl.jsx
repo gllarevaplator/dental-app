@@ -5,16 +5,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const FormControls = ({
-  inputLabel,
+  label,
   data,
   handleMenuItem,
   handleAllYearsMenuItem,
 }) => {
   return (
     <FormControl sx={{ m: 1, minWidth: 200 }}>
-      <InputLabel id="demo-simple-select-autowidth-label">
-        {inputLabel}
-      </InputLabel>
+      <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
       <Select
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
