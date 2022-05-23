@@ -7,6 +7,7 @@ import Select from "@mui/material/Select";
 const FormControls = ({
   label,
   data,
+  value,
   handleMenuItem,
   handleAllYearsMenuItem,
 }) => {
@@ -18,8 +19,8 @@ const FormControls = ({
         id="demo-simple-select-autowidth"
         defaultValue=""
       >
-        <MenuItem onClick={handleAllYearsMenuItem} value={"All Years"} selected>
-          <em>All Years</em>
+        <MenuItem onClick={handleAllYearsMenuItem} value={value} selected>
+          <em>{value}</em>
         </MenuItem>
         {data.map((d) => (
           <MenuItem

@@ -49,6 +49,7 @@ const HomeChart = () => {
     <>
       <FormControls
         label="Select a Year"
+        value="All years"
         data={PatientChartData}
         handleMenuItem={handleMenuItem}
         handleAllYearsMenuItem={handleAllYearsMenuItem}
