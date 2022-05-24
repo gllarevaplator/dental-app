@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PatientChartData } from "../../models/patientChartData";
 import BarChart from "./barChart";
-import DropDown from "./dropDown";
+import DropDown from "../dropDown/dropDown";
 import _ from "lodash";
 
 const HomeChart = () => {
