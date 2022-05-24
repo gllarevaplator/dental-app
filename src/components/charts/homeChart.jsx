@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PatientChartData } from "../../models/patientChartData";
 import BarChart from "./barChart";
-import FormControls from "./formControl";
+import DropDown from "./dropDown";
 import _ from "lodash";
 
 const HomeChart = () => {
@@ -19,7 +19,7 @@ const HomeChart = () => {
     ],
   });
 
-  const handleAllYearsMenuItem = () => {
+  const handleAllMenuItems = () => {
     setPatientChartData({
       labels: PatientChartData.map((patient) => patient.year),
       datasets: [
@@ -32,7 +32,7 @@ const HomeChart = () => {
     });
   };
 
-  const handleMenuItem = (patient) => {
+  const handleSingleMenuItem = (patient) => {
     setPatientChartData({
       labels: [patient.year],
       datasets: [
@@ -47,12 +47,12 @@ const HomeChart = () => {
 
   return (
     <>
-      <FormControls
+      <DropDown
         label="Select a Year"
-        value="All years"
-        data={PatientChartData}
-        handleMenuItem={handleMenuItem}
-        handleAllYearsMenuItem={handleAllYearsMenuItem}
+        defaultValue="All years"
+        menuItems={PatientChartData}
+        handleSingleMenuItem={handleSingleMenuItem}
+        handleAllMenuItems={handleAllMenuItems}
       />
       <BarChart chartData={patientChartData} />
     </>

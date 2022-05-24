@@ -4,12 +4,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const FormControls = ({
+const DropDown = ({
   label,
-  data,
-  value,
-  handleMenuItem,
-  handleAllYearsMenuItem,
+  defaultValue,
+  menuItems,
+  handleSingleMenuItem,
+  handleAllMenuItems,
 }) => {
   return (
     <FormControl sx={{ m: 1, minWidth: 200 }}>
@@ -19,16 +19,16 @@ const FormControls = ({
         id="demo-simple-select-autowidth"
         defaultValue=""
       >
-        <MenuItem onClick={handleAllYearsMenuItem} value={value} selected>
-          <em>{value}</em>
+        <MenuItem onClick={handleAllMenuItems} value={defaultValue} selected>
+          <em>{defaultValue}</em>
         </MenuItem>
-        {data.map((d) => (
+        {menuItems.map((menu) => (
           <MenuItem
-            key={d.id}
-            value={("", d.year)}
-            onClick={() => handleMenuItem(d)}
+            key={menu.id}
+            value={("", menu.year)}
+            onClick={() => handleSingleMenuItem(menu)}
           >
-            {d.year}
+            {menu.year}
           </MenuItem>
         ))}
       </Select>
@@ -36,4 +36,4 @@ const FormControls = ({
   );
 };
 
-export default FormControls;
+export default DropDown;
