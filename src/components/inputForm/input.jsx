@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Input({
+const Input = ({
   label,
   name,
   placeholder,
@@ -10,7 +10,7 @@ export default function Input({
   onChange,
   errors,
   touched,
-}) {
+}) => {
   return (
     <>
       <div>
@@ -32,7 +32,9 @@ export default function Input({
       </div>
     </>
   );
-}
+};
+
+export default Input;
 
 Input.propTypes = {
   label: PropTypes.string,

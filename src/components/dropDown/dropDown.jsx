@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -7,6 +8,7 @@ import Select from "@mui/material/Select";
 const DropDown = ({
   label,
   defaultValue,
+  menuProperty,
   menuItems,
   handleSingleMenuItem,
   handleAllMenuItems,
@@ -25,10 +27,10 @@ const DropDown = ({
         {menuItems.map((menu) => (
           <MenuItem
             key={menu.id}
-            value={("", menu.year)}
+            value={("", menu[menuProperty])}
             onClick={() => handleSingleMenuItem(menu)}
           >
-            {menu.year}
+            {menu[menuProperty]}
           </MenuItem>
         ))}
       </Select>
@@ -37,3 +39,12 @@ const DropDown = ({
 };
 
 export default DropDown;
+
+DropDown.propTypes = {
+  label: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  menuProperty: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  menuItems: PropTypes.array,
+  handleSingleMenuItem: PropTypes.func,
+  handleAllMenuItems: PropTypes.func,
+};

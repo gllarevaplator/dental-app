@@ -50,6 +50,8 @@ const HomeChart = () => {
       <DropDown
         label="Select a Year"
         defaultValue="All years"
+        // On the menu property you define what you want to show on the dropdown items
+        menuProperty="year"
         menuItems={PatientChartData}
         handleSingleMenuItem={handleSingleMenuItem}
         handleAllMenuItems={handleAllMenuItems}
