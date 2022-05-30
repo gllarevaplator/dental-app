@@ -132,6 +132,7 @@ const Patient = ({ user }) => {
           </div>
         )}
         <UpdateModal
+          patient={patient}
           show={createModal}
           onShow={(bool) => {
             setSnackBar(bool);
@@ -141,7 +142,6 @@ const Patient = ({ user }) => {
               createModal: false,
             })
           }
-          patient={patient}
         />
         <SnackBar
           open={snackBar}
