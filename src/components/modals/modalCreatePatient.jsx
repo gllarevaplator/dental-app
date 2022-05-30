@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
-import { useFormik } from "formik";
 import Input from "../inputForm/input";
-import { post } from "../../services/apiService";
-import "../../buttonStyles/buttonHoverDropShadow.css";
 import { Patient } from "../../models/patientModel";
+import { post } from "../../services/apiService";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import "../../buttonStyles/buttonHoverDropShadow.css";
 
-export default function CreateModal(props) {
-  const { patients, onHide, onShow } = props;
+const CreateModal = (props) => {
+  const { patients, onShow, onHide } = props;
   const [profilePicture, setProfilePicture] = useState(null);
   const [profilePictureError, setProfilePictureError] = useState("");
 
@@ -226,4 +227,12 @@ export default function CreateModal(props) {
       </Modal.Footer>
     </Modal>
   );
-}
+};
+
+export default CreateModal;
+
+CreateModal.propTypes = {
+  patients: PropTypes.array,
+  onShow: PropTypes.func,
+  onHide: PropTypes.func,
+};

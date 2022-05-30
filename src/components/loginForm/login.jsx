@@ -6,7 +6,7 @@ import SnackBar from "../materialUIComponents/snackBar";
 import Input from "../inputForm/input";
 import "./login.css";
 
-export default function LoginForm() {
+const LoginForm = () => {
   const [snackBar, setSnackBar] = useState(false);
 
   useEffect(() => {
@@ -102,4 +102,5 @@ export default function LoginForm() {
       </div>
     </>
   );
-}
+};
+export default LoginForm;

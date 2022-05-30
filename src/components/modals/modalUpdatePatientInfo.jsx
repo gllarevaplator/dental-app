@@ -6,7 +6,7 @@ import { put } from "../../services/apiService";
 import "../../buttonStyles/buttonHoverDropShadow.css";
 import * as Yup from "yup";
 
-export default function UpdateModal(props) {
+const UpdateModal = (props) => {
   const { patient, onHide, onShow } = props;
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -243,4 +243,6 @@ export default function UpdateModal(props) {
       </Modal>
     </>
   );
-}
+};
+
+export default UpdateModal;

@@ -7,7 +7,7 @@ import ProgressCircle from "../materialUIComponents/progressCircle";
 import SnackBar from "../materialUIComponents/snackBar";
 import "../../buttonStyles/buttonHoverDropShadow.css";
 
-export default function Patients({ user }) {
+const Patients = ({ user }) => {
   const [loadingData, setLoadingData] = useState(true);
   const [patients, setPatients] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -114,4 +114,6 @@ export default function Patients({ user }) {
       />
     </div>
   );
-}
+};
+
+export default Patients;

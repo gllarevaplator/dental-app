@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 
-export default function NavBar({ user }) {
+const NavBar = ({ user }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
 
@@ -95,4 +95,6 @@ export default function NavBar({ user }) {
       </nav>
     </>
   );
-}
+};
+
+export default NavBar;

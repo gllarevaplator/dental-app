@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-export default function SnackBar(props) {
-  const { open, message, severity, autoHideDuration, handleSnackBarClose } =
-    props;
-
+const SnackBar = ({
+  open,
+  message,
+  severity,
+  autoHideDuration,
+  handleSnackBarClose,
+}) => {
   return (
     <div>
       <Snackbar
@@ -20,4 +24,14 @@ export default function SnackBar(props) {
       </Snackbar>
     </div>
   );
-}
+};
+
+export default SnackBar;
+
+SnackBar.propTypes = {
+  open: PropTypes.bool,
+  message: PropTypes.string,
+  severity: PropTypes.string,
+  autoHideDuration: PropTypes.number,
+  handleSnackBarClose: PropTypes.func,
+};
