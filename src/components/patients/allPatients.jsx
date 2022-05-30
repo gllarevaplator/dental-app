@@ -18,9 +18,10 @@ const Patients = ({ user }) => {
   useEffect(() => {
     document.title = "Patients";
     getPatients();
-
+    console.log("mounted");
     return () => {
       setPatients([]);
+      console.log("unmounted");
     };
   }, []);
 
@@ -63,56 +64,63 @@ const Patients = ({ user }) => {
   }
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Patients</h1>
-      {user && (
-        <button className="btn btn-success mb-3" onClick={() => setShow(true)}>
-          Add Patient
-        </button>
-      )}
-      <CreateModal
-        show={show}
-        onHide={() => setShow(false)}
-        patients={patients}
-        onShow={(bool) => {
-          setSnackBar(bool);
-          setDeleted(false);
-        }}
-      />
-      <div className="d-flex align-items-center mb-3">
-        <div className="flex-grow-1">
-          <Input
-            type="text"
-            placeholder="Search by firstname or lastname..."
-            onChange={handleSearch}
-          />
+    <>
+      <div className="container mt-4">
+        <h1 className="mb-4">Patients</h1>
+        {user && (
+          <button
+            className="btn btn-success mb-3"
+            onClick={() => setShow(true)}
+          >
+            Add Patient
+          </button>
+        )}
+        <CreateModal
+          show={show}
+          onHide={() => setShow(false)}
+          patients={patients}
+          setPatients={setPatients}
+          onShow={(bool) => {
+            setSnackBar(bool);
+            setDeleted(false);
+          }}
+          setLoadingData={setLoadingData}
+        />
+        <div className="d-flex align-items-center mb-3">
+          <div className="flex-grow-1">
+            <Input
+              type="text"
+              placeholder="Search by firstname or lastname..."
+              onChange={handleSearch}
+            />
+          </div>
+          <div>
+            <button className="btn btn-primary mt-4">Search</button>
+          </div>
         </div>
-        <div>
-          <button className="btn btn-primary mt-4">Search</button>
-        </div>
-      </div>
 
-      <PatientsTable
-        patients={patients}
-        handleDelete={handleDelete}
-        user={user}
-        searchQuery={searchQuery}
-      />
-      {!user && (
-        <div className="text-center">
-          <p>
-            <strong>Login to create edit or delete a patient</strong>
-          </p>
-        </div>
-      )}
-      <SnackBar
-        open={snackBar}
-        message={deleted ? "PATIENT DELETED" : "PATIENT CREATED SUCCESFULLY"}
-        severity={deleted ? "error" : "success"}
-        autoHideDuration={4000}
-        handleSnackBarClose={handleSnackBarClose}
-      />
-    </div>
+        <PatientsTable
+          patients={patients}
+          handleDelete={handleDelete}
+          user={user}
+          searchQuery={searchQuery}
+        />
+        {!user && (
+          <div className="text-center">
+            <p>
+              <strong>Login to create edit or delete a patient</strong>
+            </p>
+          </div>
+        )}
+        <SnackBar
+          open={snackBar}
+          message={deleted ? "PATIENT DELETED" : "PATIENT CREATED SUCCESFULLY"}
+          severity={deleted ? "error" : "success"}
+          autoHideDuration={4000}
+          handleSnackBarClose={handleSnackBarClose}
+        />
+      </div>
+    </>
   );
 };
 

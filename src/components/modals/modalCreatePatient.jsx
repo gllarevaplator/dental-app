@@ -6,10 +6,17 @@ import { Patient } from "../../models/patientModel";
 import { post } from "../../services/apiService";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ProgressCircle from "../materialUIComponents/progressCircle";
 import "../../buttonStyles/buttonHoverDropShadow.css";
 
-const CreateModal = (props) => {
-  const { patients, onShow, onHide } = props;
+const CreateModal = ({
+  patients,
+  setPatients,
+  onShow,
+  onHide,
+  setLoadingData,
+  ...props
+}) => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [profilePictureError, setProfilePictureError] = useState("");
 
@@ -72,10 +79,11 @@ const CreateModal = (props) => {
         Patient.addition = values.addition;
         Patient.insurance = values.insurance;
         Patient.profilePicture = profilePicture;
-
+        setLoadingData(true);
         try {
           const { data: patient } = await post("/Patient/create", Patient);
-          patients.unshift(patient.data);
+          setPatients([patient.data, ...patients]);
+          setLoadingData(false);
           onHide();
           onShow(true);
           handleReset();
@@ -99,6 +107,7 @@ const CreateModal = (props) => {
       <Modal.Header
         closeButton
         onClick={() => {
+          onHide();
           handleReset();
           setProfilePictureError("");
         }}
