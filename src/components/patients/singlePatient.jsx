@@ -18,8 +18,8 @@ const Patient = ({ user }) => {
     editModal: false,
   });
   const { state } = useLocation();
-  const navigate = useNavigate();
   const patientId = state.patientId;
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Patient";
