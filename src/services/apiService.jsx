@@ -10,8 +10,8 @@ export async function post(endpoint, createNew) {
   return await axios.post(url + endpoint, createNew);
 }
 
-export async function put(endpoint, update) {
-  return await axios.put(url + endpoint, update);
+export async function put(endpoint, id) {
+  return await axios.put(url + endpoint, id);
 }
 
 export async function remove(endpoint, id) {
