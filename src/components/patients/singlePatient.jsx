@@ -133,6 +133,7 @@ const Patient = ({ user }) => {
         )}
         <UpdateModal
           patient={patient}
+          setLoadingData={(bool) => setLoadingData(bool)}
           show={createModal}
           onShow={(bool) => {
             setSnackBar(bool);

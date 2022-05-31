@@ -6,8 +6,7 @@ import { put } from "../../services/apiService";
 import "../../buttonStyles/buttonHoverDropShadow.css";
 import * as Yup from "yup";
 
-const UpdateModal = (props) => {
-  const { patient, onHide, onShow } = props;
+const UpdateModal = ({ patient, onHide, onShow, setLoadingData, ...props }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { handleSubmit, handleChange, handleReset, values, errors, touched } =
@@ -65,6 +64,7 @@ const UpdateModal = (props) => {
           setErrorMessage("Patient information cannot be the same as before!");
           return;
         } else {
+          setLoadingData(true);
           try {
             setErrorMessage("");
             patient.firstname = values.firstname;
@@ -76,6 +76,7 @@ const UpdateModal = (props) => {
             patient.addition = values.addition;
             patient.insurance = values.insurance;
             await put("/Patient/update", patient);
+            setLoadingData(false);
             onHide();
             onShow(true);
           } catch (ex) {

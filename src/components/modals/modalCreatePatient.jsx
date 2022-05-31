@@ -111,7 +111,7 @@ const CreateModal = ({
       centered
     >
       <Modal.Header>
-        <Modal.Title>Add New Customer</Modal.Title>
+        <Modal.Title>Add New Patient</Modal.Title>
         <button
           type="button"
           className="btn-close"
