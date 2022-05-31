@@ -103,7 +103,6 @@ const CreateModal = ({
         }
       },
     });
-
   return (
     <Modal
       {...props}
@@ -111,8 +110,15 @@ const CreateModal = ({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>Add New Customer</Modal.Title>
+        <button
+          type="button"
+          className="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          onClick={onHide}
+        ></button>
       </Modal.Header>
       <Modal.Body>
         <form className="d-flex align-content-start flex-wrap">

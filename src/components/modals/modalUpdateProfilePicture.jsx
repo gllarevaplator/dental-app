@@ -48,15 +48,15 @@ export default function ProfilePictureModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header
-          closeButton
-          onClick={() => {
-            handleReset();
-            setProfilePicture(null);
-            setErrorMessage("");
-          }}
-        >
+        <Modal.Header>
           <Modal.Title>Change Profile Picture</Modal.Title>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            onClick={onHide}
+          ></button>
         </Modal.Header>
         <Modal.Body className="d-flex flex-column align-items-center text-center">
           <div>
