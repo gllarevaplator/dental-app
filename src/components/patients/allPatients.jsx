@@ -18,10 +18,9 @@ const Patients = ({ user }) => {
   useEffect(() => {
     document.title = "Patients";
     getPatients();
-    console.log("mounted");
     return () => {
+      // Clear the patients state after components unmounts
       setPatients([]);
-      console.log("unmounted");
     };
   }, []);
 
@@ -79,12 +78,12 @@ const Patients = ({ user }) => {
           show={show}
           onHide={() => setShow(false)}
           patients={patients}
-          setPatients={setPatients}
+          setLoadingData={(bool) => setLoadingData(bool)}
+          setPatients={(newPatient) => setPatients(newPatient)}
           onShow={(bool) => {
             setSnackBar(bool);
             setDeleted(false);
           }}
-          setLoadingData={setLoadingData}
         />
         <div className="d-flex align-items-center mb-3">
           <div className="flex-grow-1">

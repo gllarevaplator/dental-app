@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Input from "../inputForm/input";
@@ -6,7 +6,6 @@ import { Patient } from "../../models/patientModel";
 import { post } from "../../services/apiService";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import ProgressCircle from "../materialUIComponents/progressCircle";
 import "../../buttonStyles/buttonHoverDropShadow.css";
 
 const CreateModal = ({
@@ -19,6 +18,14 @@ const CreateModal = ({
 }) => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [profilePictureError, setProfilePictureError] = useState("");
+
+  useEffect(() => {
+    return () => {
+      // Clear the modal state after submitting data and component unmounting
+      setProfilePicture(null);
+      setProfilePictureError("");
+    };
+  }, []);
 
   const handleImageUpload = (e) => {
     const image = e.currentTarget.files[0];
@@ -104,14 +111,7 @@ const CreateModal = ({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header
-        closeButton
-        onClick={() => {
-          onHide();
-          handleReset();
-          setProfilePictureError("");
-        }}
-      >
+      <Modal.Header closeButton>
         <Modal.Title>Add New Customer</Modal.Title>
       </Modal.Header>
       <Modal.Body>
