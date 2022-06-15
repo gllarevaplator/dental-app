@@ -19,7 +19,7 @@ const Patients = ({ user }) => {
     document.title = "Patients";
     getPatients();
     return () => {
-      // Clear the patients state after components unmounts
+      // Clear the patients state after component unmounts
       setPatients([]);
     };
   }, []);
