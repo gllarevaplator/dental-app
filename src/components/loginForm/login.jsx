@@ -56,7 +56,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-container">
+    <div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
