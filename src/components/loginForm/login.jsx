@@ -117,6 +117,13 @@ const LoginForm = () => {
               </Button>
             </Box>
           </Box>
+          <Grid container>
+            <Grid item xs className="text-center">
+              <span>Username: admin</span>
+              <br />
+              <span>Password: admin123</span>
+            </Grid>
+          </Grid>
         </Container>
       </ThemeProvider>
       <SnackBar
