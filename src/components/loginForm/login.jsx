@@ -41,7 +41,7 @@ const LoginForm = () => {
           password: values.password,
         });
         localStorage.setItem("token", data.token);
-        window.location = "/home";
+        window.location = "/";
       } catch (ex) {
         setSnackBar(true);
       }

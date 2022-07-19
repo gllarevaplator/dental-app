@@ -90,10 +90,10 @@ const CreateModal = ({
         try {
           const { data: patient } = await post("/Patient/create", Patient);
           setPatients([patient.data, ...patients]);
-          setLoadingData(false);
           onHide();
           onShow(true);
           handleReset();
+          setLoadingData(false);
           setProfilePictureError("");
         } catch (ex) {
           console.log(ex);
